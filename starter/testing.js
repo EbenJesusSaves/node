@@ -1,1 +1,1 @@
-export const determ = num + 1;
+export const determ = (num) => num + 1;
