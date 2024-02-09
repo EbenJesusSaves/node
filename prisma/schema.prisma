@@ -15,7 +15,7 @@ model User {
   username  String    @unique
   password  String
   createdAt DateTime  @default(now())
-  Product   Product[]
+  roducts   Product[]
 }
 
 model Product {
@@ -23,5 +23,25 @@ model Product {
   name       String   @db.VarChar(200)
   createdAt  DateTime @default(now())
   belongToId String
-  belongsTP  User     @relation(fields: [belongToId], references: [id])
+  belongsTo  User     @relation(fields: [belongToId], references: [id])
+  updates    Update[]
+}
+
+enum UPDATE_STATUS {
+  IN_PROGRESS
+  SHIPPED
+  DEPRECATED
+}
+
+model Update {
+  id        String        @id @default(uuid())
+  title     String
+  createdAt DateTime      @default(now())
+  updateAt  DateTime
+  body      String
+  status    UPDATE_STATUS @default(IN_PROGRESS)
+  version   String?
+  assert    String?
+  productId String
+  product   Product       @relation(fields: [productId], references: [id])
 }
