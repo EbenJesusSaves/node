@@ -3,7 +3,11 @@ import router from "./router";
 import morgan from "morgan";
 const app = express();
 
+// ----------------middlewares-----------//
 app.use(morgan("dev"));
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+
 app.get("/", (req, res) => {
   console.log("first backend App created");
   res.status(200);
