@@ -5,7 +5,10 @@ const router = Router();
 router.get("/product", (req, res) => {
   res.json({ message: "Hello Bro" });
 });
-router.get("/product/:id", () => {});
+router.get("/product/:id", (req, res) => {
+  res.json({ message: "So this what we want" });
+  res.status(200);
+});
 router.put("/product/:id", () => {});
 router.post("/product/", () => {});
 router.delete("/product/:id", () => {});
