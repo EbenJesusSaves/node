@@ -1,4 +1,5 @@
 import express from "express";
+import router from "./router";
 
 const app = express();
 
@@ -9,3 +10,5 @@ app.get("/", (req, res) => {
 });
 
 export default app;
+
+app.use("/api", router);
