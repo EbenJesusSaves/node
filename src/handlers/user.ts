@@ -6,7 +6,6 @@ export const createUser = async (req, res) => {
     data: {
       username: req.body.username,
       password: await hashPassword(req.body.password),
-      email: req.body.email,
     },
   });
 
@@ -28,7 +27,7 @@ export const singIn = async (req, res) => {
   }
 
   const token = createJWT(user);
-  res.json({ token, name: user.username, message: "welcome back" });
+  res.json({ token });
 
   res.status(200);
 };

@@ -23,15 +23,15 @@ export const protect = (req, res, next) => {
   const bearer = req.headers.authorization;
   if (!bearer) {
     res.status(401);
-    res.send("not authorized");
+    res.send("not authorized yeah");
     return;
   }
 
-  const [, token] = bearer.split("");
+  const [, token] = bearer.split(" ");
 
   if (!token) {
     res.status(401);
-    res.json({ message: "not authorized" });
+    res.json({ message: "not authorized token" });
     return;
   }
 
@@ -41,7 +41,7 @@ export const protect = (req, res, next) => {
     next();
   } catch (error) {
     res.status(401);
-    res.json({ message: "not authorized" });
+    res.json({ message: "not authorized because mismatch" });
     return;
   }
 };
