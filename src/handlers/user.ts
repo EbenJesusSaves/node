@@ -27,7 +27,7 @@ export const singIn = async (req, res) => {
   }
 
   const token = createJWT(user);
-  res.json({ token, name: user.username, message: "welcome back" });
+  res.json({ token });
 
   res.status(200);
 };
