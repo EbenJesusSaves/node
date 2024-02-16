@@ -13,6 +13,7 @@ export const createUser = async (req, res) => {
   res.json({ token });
 };
 
+//user validation
 export const singIn = async (req, res) => {
   const user = await prisma.user.findUnique({
     where: {
