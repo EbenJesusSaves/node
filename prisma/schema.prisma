@@ -14,10 +14,10 @@ model User {
   id        String    @id @default(uuid())
   username  String    @unique
   password  String
-  email     String    @unique
-  role      String    @unique
+  email     String    @default("default@email.com")
+  role      String    @default("default_role")
   createdAt DateTime  @default(now())
-  roducts   Product[]
+  prouducts Product[]
 }
 
 model Product {
