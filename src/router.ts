@@ -1,7 +1,7 @@
 import { Router } from "express";
 import { body, validationResult } from "express-validator";
 import { inputValidators } from "./modules/middleware";
-import { addProduct, getAllProducts } from "./handlers/products";
+import { addProduct, getAllProducts, updateProduct } from "./handlers/products";
 const router = Router();
 
 router.get("/products", getAllProducts);
@@ -13,7 +13,7 @@ router.put(
   "/product/:id",
   body("name").isString(),
   inputValidators,
-  (req, res, next) => {}
+  updateProduct
 );
 router.post("/product/", addProduct);
 router.delete("/product/:id", () => {});
