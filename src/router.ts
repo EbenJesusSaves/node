@@ -1,7 +1,7 @@
 import { Router } from "express";
 import { body, validationResult } from "express-validator";
 import { inputValidators } from "./modules/middleware";
-import { getAllProducts } from "./handlers/products";
+import { addProduct, getAllProducts } from "./handlers/products";
 const router = Router();
 
 router.get("/products", getAllProducts);
@@ -15,7 +15,7 @@ router.put(
   inputValidators,
   (req, res, next) => {}
 );
-router.post("/product/", () => {});
+router.post("/product/", addProduct);
 router.delete("/product/:id", () => {});
 
 //---------------update ------------------//
