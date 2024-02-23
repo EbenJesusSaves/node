@@ -21,3 +21,15 @@ export default app;
 app.use("/api", protect, router);
 app.post("/user", createUser);
 app.post("/signIn", singIn);
+//error handling
+
+app.use((err, req, res, next) => {
+  console.log(err);
+  if (err.type === "auth") {
+    res.status(4001).json({ message: "screw you, you do not have access " });
+  } else if (err.type === "input") {
+    res.status(400).json({ message: "kwame be careful" });
+  } else {
+    res.status(500).json({ message: "Go figure it out dude" });
+  }
+});

@@ -46,3 +46,5 @@ export const protect = (req, res, next) => {
     return;
   }
 };
+
+//NOTE, it's possible to execute multiple middlewares on different lines
