@@ -1,7 +1,7 @@
 import { Router } from "express";
 import { body, validationResult } from "express-validator";
 import { inputValidators } from "./modules/middleware";
-import { getAllProducts } from "./handlers/products";
+import { addProduct, getAllProducts, updateProduct } from "./handlers/products";
 const router = Router();
 
 router.get("/products", getAllProducts);
@@ -13,9 +13,9 @@ router.put(
   "/product/:id",
   body("name").isString(),
   inputValidators,
-  (req, res, next) => {}
+  updateProduct
 );
-router.post("/product/", () => {});
+router.post("/product/", addProduct);
 router.delete("/product/:id", () => {});
 
 //---------------update ------------------//
@@ -34,4 +34,9 @@ router.put("/updatePoints/:id", () => {});
 router.post("/updatePoints/", () => {});
 router.delete("/updatePoints/:id", () => {});
 
+router.use((err, req, res, next) => {
+  if (err.type === "product") {
+    res.status(402).json({ message: "screw you, you suck sucker 😂😂😂😂" });
+  }
+});
 export default router;
