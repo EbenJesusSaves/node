@@ -14,18 +14,23 @@ export const getAllProducts = async (req, res) => {
   res.status(200);
 };
 
-export const addProduct = async (req, res) => {
+export const addProduct = async (req, res, next) => {
   // const user = await prisma.user.findUnique({
   //   where: { id: req.user.id },
   // });
-  const product = await prisma.product.create({
-    data: {
-      name: req.body.name,
-      belongToId: req.user.id,
-    },
-  });
-  res.status(200);
-  res.json({ data: product });
+  try {
+    const product = await prisma.product.create({
+      data: {
+        name: req.body.name,
+        belongToId: req.user.id,
+      },
+    });
+    res.status(200);
+    res.json({ data: product });
+  } catch (error) {
+    error.type = "product";
+    next(error);
+  }
 };
 
 export const updateProduct = async (req, res) => {

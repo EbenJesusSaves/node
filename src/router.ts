@@ -34,4 +34,9 @@ router.put("/updatePoints/:id", () => {});
 router.post("/updatePoints/", () => {});
 router.delete("/updatePoints/:id", () => {});
 
+router.use((err, req, res, next) => {
+  if (err.type === "product") {
+    res.status(402).json({ message: "screw you, you suck sucker 😂😂😂😂" });
+  }
+});
 export default router;
