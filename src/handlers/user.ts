@@ -18,6 +18,7 @@ export const createUser = async (req, res, next) => {
   }
 };
 
+
 export const singIn = async (req, res, next) => {
   try {
     const user = await prisma.user.findUnique({
@@ -26,6 +27,10 @@ export const singIn = async (req, res, next) => {
       },
     });
     const isValid = await comparePasswords(req.body.password, user.password);
+
+//user validation
+
+
 
     if (!isValid) {
       res.status(401);
